@@ -2040,7 +2040,7 @@
                     class="fa fa-users fa-fw"></i> Overview</a>
             <a href="/product" class="therichpost-bar-item therichpost-button therichpost-padding"><i
                     class="fa fa-eye fa-fw"></i> Views</a>
-            <a href="#" class="therichpost-bar-item therichpost-button therichpost-padding"><i
+            <a href="/user" class="therichpost-bar-item therichpost-button therichpost-padding"><i
                     class="fa fa-users fa-fw"></i> Users</a>
             <a href="#" class="therichpost-bar-item therichpost-button therichpost-padding"><i
                     class="fa fa-cog fa-fw"></i> Settings</a><br><br>

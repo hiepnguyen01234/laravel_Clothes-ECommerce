@@ -7,58 +7,44 @@
             {{ $message }}
         </div>
     @endif --}}
-    @if (session('message'))
+    @if (session('dangerMessage'))
         <div class="alert alert-danger">
-            {{ session('message') }}
+            {{ session('dangerMessage') }}
         </div>
     @endif
 
     <div style="margin-top: 20px; margin-bottom: 20px">
-        <a href="{{ '/product/create' }}">
+        <a href="{{ '/user/create' }}">
             <span class="glyphicon glyphicon-pencil">Create new</span>
         </a>
     </div>
     <table class="table table-bordered">
         <tr class="success">
             <th>ID</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá sản phẩm</th>
-            <th>Nội dung</th>
-            <th>Ảnh sản phẩm</th>
-            <th>Đăng bán</th>
+            <th>User Name</th>
+            <th>Registered Email Address</th>
+            <th>Recent Active</th>
             <th>Action</th>
         </tr>
-        @foreach ($products as $p)
+        @foreach ($users as $user)
             <tr>
-                <td>{{ $p->id }}</td>
-                <td>{{ $p->name }}</td>
-                <td class="text-right">{{ number_format($p->price) }}</td>
-                <td>{{ $p->content }}</td>
+                <td>{{ $user->id }}</td>
+                <td>{{ $user->name }}</td>
+                <td>{{ $user->email }}</td>
                 <td>
-                    <img src="{{ Asset($p->image_path) }}" alt="{{ $p->name }}" width="120" height="120">
+                    <span class="text-success glyphicon glyphicon-ok">Active</span>
                 </td>
                 <td>
-                    @if ($p->active)
-                        <span class="text-success glyphicon glyphicon-ok">Active</span>
-                    @else
-                        <span class="text-danger glyphicon glyphicon-remove">Inactive</span>
-                    @endif
-                </td>
-                <td>
-                    <a href="{{ '/product/' . $p->id . '/edit' }}"><span class="glyphicon glyphicon-pencil">Edit
+                    <a href="{{ '/user/' . $user->id . '/edit' }}"><span class="glyphicon glyphicon-pencil">Edit
                             |</span></a>
-                    <a href="{{ '/product/' . $p->id }}"><span class="glyphicon glyphicon-eye-open">Preview |</span></a>
+                    <a href="{{ '/user/' . $user->id }}"><span class="glyphicon glyphicon-eye-open">Preview |</span></a>
 
                     <!-- ========================= SECTION DELETE PROCESS ========================= -->
-                    {{-- <a href="{{ '/product/' . $p->id }}" data-method="delete" data-confirm="Are you sure?"><span class="glyphicon glyphicon-trash">Delete</span></a> --}}
-                    {{-- <button class="delete" data-target="{{ '/product/' . $p->id }}" data-method="delete"
-                        data-confirm="Are you sure?">Delete</button> --}}
-
                     {{-- --★ Other way ★--
                     {!! Form::open(['method' => 'DELETE','route' => ['reports.destroy', $dummy->id],'class'=>'']) !!}
                     {{ Form::button('<i class="bi bi-trash-fill" style="color:white"></i>', ['type' => 'submit', 'class' => 'delete get-started-btn-two'] )  }}
                     {!! Form::close() !!} --}}
-                    <form action="{{ route('product.destroy', $p->id) }}" method="post">
+                    <form action="{{ route('user.destroy', $user->id) }}" method="post">
                         @csrf
                         @method('DELETE')
                         <a href="#" class="btn btn-danger" title="Delete" data-toggle="tooltip"
