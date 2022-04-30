@@ -24,6 +24,16 @@ class RoleMiddleware
             return redirect('/home');
         }
 
+        // If user has not logged in,
+        // redirect to home page.
+        // --★ Note ★--
+        // Because the route '/home' had been checked automatically by phpAth,
+        // so when redirect to this, it will be requested login.
+        if (!Auth::check())
+        {
+            return redirect('/home');
+        }
+
         return $next($request);
     }
 }
